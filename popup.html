@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Algo Manager</title>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+</head>
+<body>
+  <div id="snippetList"></div>
+  <button id="addSnippet">Add Snippet</button>
+
+  <div id="snippetModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <label for="snippetName">Snippet Name:</label>
+      <input type="text" id="snippetName">
+      <label for="snippetCode">Snippet Code:</label>
+      <textarea id="snippetCode"></textarea>
+      <button id="saveSnippet">Save</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
