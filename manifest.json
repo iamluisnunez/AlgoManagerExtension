@@ -1,18 +1,10 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Code Snippet Manager",
   "version": "1.0",
   "description": "Manage and store your code snippets.",
   "permissions": ["storage"],
-  "browser_action": {
-    "default_icon": {
-      "16": "icon.png",
-      "48": "icon.png",
-      "128": "icon.png"
-    },
+  "action": {
     "default_popup": "popup.html"
-  },
-  "icons": {
-    "48": "icon.png"
   }
 }

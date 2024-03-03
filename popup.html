@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Algo Manager</title>
-  <link rel="stylesheet" type="text/css" href="popup.css">
-</head>
-<body>
-  <div id="snippetList"></div>
-  <button id="addSnippet">Add Snippet</button>
+  <head>
+    <title>Code Snippet Manager</title>
+    <style>
+      body {
+        width: 300px;
+        padding: 10px;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Add Code Snippet</h3>
+    <textarea id="snippetText" placeholder="Enter your code snippet"></textarea>
+    <button id="saveButton" onclick="saveSnippet()">Save</button>
 
-  <div id="snippetModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <label for="snippetName">Snippet Name:</label>
-      <input type="text" id="snippetName">
-      <label for="snippetCode">Snippet Code:</label>
-      <textarea id="snippetCode"></textarea>
-      <button id="saveSnippet">Save</button>
-    </div>
-  </div>
+    <h3>Your Code Snippets</h3>
+    <ul id="snippetList"></ul>
 
-  <script src="popup.js"></script>
-</body>
+    <script src="popup.js"></script>
+  </body>
 </html>
