@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Code Snippet Manager</title>
+    <link rel="stylesheet" href="popup.css" />
     <style>
       body {
         width: 300px;
@@ -17,7 +18,15 @@
   <body>
     <h3>Add Code Snippet</h3>
     <textarea id="snippetText" placeholder="Enter your code snippet"></textarea>
-    <button id="saveButton" onclick="saveSnippet()">Save</button>
+    <button id="saveButton">Save</button>
+    <br />
+    <input
+      type="text"
+      id="snippetNumberToDelete"
+      placeholder="Enter snippet number"
+      pattern="[0-9]*"
+    />
+    <button id="deleteButton">Delete</button>
 
     <h3>Your Code Snippets</h3>
     <ul id="snippetList"></ul>

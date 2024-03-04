@@ -29,20 +29,40 @@ function saveSnippet(snippetText) {
     });
   });
 }
-function deleteSnippet(snippetText) {
-  // Get existing snippets from storage
-  chrome.storage.sync.get({ snippets: [] }, function (data) {
-    const snippets = data.snippets;
+function deleteSnippet() {
+  console.log("This button is being pressed");
+  // Get the snippet number from the text box
+  const snippetNumberToDelete = document.getElementById(
+    "snippetNumberToDelete"
+  ).value;
 
-    // Add the new snippet
-    snippets.push(snippetText);
+  // Validate if the input is a valid number
+  if (!isNaN(snippetNumberToDelete)) {
+    // Convert the input to an integer
+    const snippetNumber = parseInt(snippetNumberToDelete) - 1;
+    console.log(snippetNumber);
 
-    // Save the updated snippets back to storage
-    chrome.storage.sync.set({ snippets: snippets }, function () {
-      // Reload the snippets in the popup
-      loadSnippets();
+    // Get existing snippets from storage
+    chrome.storage.sync.get({ snippets: [] }, function (data) {
+      const snippets = data.snippets;
+
+      // Validate if the snippet number is within the array bounds
+      if (snippetNumber >= 0 && snippetNumber < snippets.length) {
+        // Remove the specified snippet from the array
+        snippets.splice(snippetNumber, 1);
+
+        // Save the updated snippets back to storage
+        chrome.storage.sync.set({ snippets: snippets }, function () {
+          // Reload the snippets in the popup
+          loadSnippets();
+        });
+      } else {
+        alert("Invalid snippet number. Please enter a valid number.");
+      }
     });
-  });
+  } else {
+    alert("Please enter a valid number.");
+  }
 }
 
 function loadSnippets() {
@@ -50,7 +70,7 @@ function loadSnippets() {
   chrome.storage.sync.get({ snippets: [] }, function (data) {
     const snippetList = document.getElementById("snippetList");
     snippetList.innerHTML = "";
-
+    console.log(data);
     data.snippets.forEach(function (snippet) {
       const listItem = document.createElement("li");
       listItem.textContent = snippet;
@@ -58,3 +78,7 @@ function loadSnippets() {
     });
   });
 }
+document.getElementById("saveButton").addEventListener("click", saveSnippet);
+document
+  .getElementById("deleteButton")
+  .addEventListener("click", deleteSnippet);
