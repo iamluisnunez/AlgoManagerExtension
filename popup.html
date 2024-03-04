@@ -3,19 +3,13 @@
   <head>
     <title>Code Snippet Manager</title>
     <link rel="stylesheet" href="popup.css" />
-    <style>
-      body {
-        width: 300px;
-        padding: 10px;
-      }
-      textarea {
-        width: 100%;
-        height: 100px;
-        margin-bottom: 10px;
-      }
-    </style>
   </head>
   <body>
+    <h3>Code Snippet Name:</h3>
+    <textarea
+      id="titleText"
+      placeholder="Enter your code snippet title"
+    ></textarea>
     <h3>Add Code Snippet</h3>
     <textarea id="snippetText" placeholder="Enter your code snippet"></textarea>
     <button id="saveButton">Save</button>

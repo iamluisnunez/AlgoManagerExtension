@@ -27,6 +27,7 @@ function saveSnippet(snippetText) {
       // Reload the snippets in the popup
       loadSnippets();
     });
+    document.getElementById("snippetText").value = "";
   });
 }
 function deleteSnippet() {
@@ -56,6 +57,7 @@ function deleteSnippet() {
           // Reload the snippets in the popup
           loadSnippets();
         });
+        document.getElementById("snippetNumberToDelete").value = "";
       } else {
         alert("Invalid snippet number. Please enter a valid number.");
       }
