@@ -90,6 +90,27 @@ function deleteSnippet() {
   }
 }
 
+/*SHOW CODE FUNCTION */
+function showCode() {
+  document.getElementById("mainView").style.display = "none";
+  // Display the code view with the selected snippet
+  const codeView = document.getElementById("codeView");
+  codeView.innerHTML =
+    chrome.extension.getBackgroundPage().snippets[snippetIndex];
+  // Show the back button
+  document.getElementById("backButton").style.display = "block";
+}
+function showMainView() {
+  // Show the main view
+  document.getElementById("mainView").style.display = "block";
+
+  // Hide the code view
+  document.getElementById("codeView").innerHTML = "";
+
+  // Hide the back button
+  document.getElementById("backButton").style.display = "none";
+}
+
 function loadSnippets() {
   // Get snippets from storage and display them in the popup
   chrome.storage.sync.get({ snippets: [] }, function (data) {
