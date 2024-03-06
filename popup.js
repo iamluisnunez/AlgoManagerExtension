@@ -1,3 +1,9 @@
+document.getElementById("saveButton").addEventListener("click", saveSnippet);
+document
+  .getElementById("deleteButton")
+  .addEventListener("click", deleteSnippet);
+const snippetTitle = document.getElementById("titleText").value.trim();
+
 document.addEventListener("DOMContentLoaded", function () {
   // Load existing snippets from storage and display them
   loadSnippets();
@@ -11,6 +17,21 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("saveButton").addEventListener("click", function () {
     const snippetText = document.getElementById("snippetText").value.trim();
     saveSnippet(snippetText);
+  });
+
+  document
+    .getElementById("snippetList")
+    .addEventListener("click", function (e) {
+      if (e.target.tagName === "LI") {
+        const snippetIndex = Array.from(e.target.parentNode.children).indexOf(
+          e.target
+        );
+        showCode(snippetIndex);
+      }
+    });
+  // Add event listener for back button
+  document.getElementById("backButton").addEventListener("click", function () {
+    showMainView();
   });
 });
 
@@ -30,6 +51,8 @@ function saveSnippet(snippetText) {
     document.getElementById("snippetText").value = "";
   });
 }
+
+/* DELETE FUNCTION */
 function deleteSnippet() {
   console.log("This button is being pressed");
   // Get the snippet number from the text box
@@ -80,7 +103,3 @@ function loadSnippets() {
     });
   });
 }
-document.getElementById("saveButton").addEventListener("click", saveSnippet);
-document
-  .getElementById("deleteButton")
-  .addEventListener("click", deleteSnippet);
