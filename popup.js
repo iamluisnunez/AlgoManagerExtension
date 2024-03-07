@@ -1,4 +1,3 @@
-document.getElementById("saveButton").addEventListener("click", saveSnippet);
 document
   .getElementById("deleteButton")
   .addEventListener("click", deleteSnippet);
@@ -16,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("saveButton").addEventListener("click", function () {
     const snippetText = document.getElementById("snippetText").value.trim();
-    saveSnippet(snippetText);
+    const snippetTitle = document.getElementById("titleText").value.trim();
+    saveSnippet(snippetText, snippetTitle);
   });
 
   document
@@ -35,13 +35,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function saveSnippet(snippetText) {
+function saveSnippet(snippetText, snippetTitle) {
   // Get existing snippets from storage
   chrome.storage.sync.get({ snippets: [] }, function (data) {
     const snippets = data.snippets;
 
+    //create a new snippet object
+    const newSnippet = {
+      title: snippetTitle,
+      code: snippetText,
+    };
+
     // Add the new snippet
-    snippets.push(snippetText);
+    snippets.push(newSnippet);
 
     // Save the updated snippets back to storage
     chrome.storage.sync.set({ snippets: snippets }, function () {
@@ -135,7 +141,8 @@ function loadSnippets() {
     console.log(data);
     data.snippets.forEach(function (snippet, index) {
       const listItem = document.createElement("li");
-      listItem.textContent = `${index + 1}: ${snippet}`;
+      console.log(snippet);
+      listItem.textContent = `${index + 1}: ${snippet.title}`;
       snippetList.appendChild(listItem);
     });
   });
