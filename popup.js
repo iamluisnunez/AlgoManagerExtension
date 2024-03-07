@@ -117,9 +117,9 @@ function loadSnippets() {
     const snippetList = document.getElementById("snippetList");
     snippetList.innerHTML = "";
     console.log(data);
-    data.snippets.forEach(function (snippet) {
+    data.snippets.forEach(function (snippet, index) {
       const listItem = document.createElement("li");
-      listItem.textContent = snippet;
+      listItem.textContent = `${index + 1}: ${snippet}`;
       snippetList.appendChild(listItem);
     });
   });
