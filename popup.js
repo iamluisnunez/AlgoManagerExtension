@@ -49,6 +49,7 @@ function saveSnippet(snippetText) {
       loadSnippets();
     });
     document.getElementById("snippetText").value = "";
+    document.getElementById("titleText").value = "";
   });
 }
 
@@ -81,6 +82,7 @@ function deleteSnippet() {
           loadSnippets();
         });
         document.getElementById("snippetNumberToDelete").value = "";
+        document.getElementById("titleText").value = "";
       } else {
         alert("Invalid snippet number. Please enter a valid number.");
       }
@@ -90,16 +92,30 @@ function deleteSnippet() {
   }
 }
 
-/*SHOW CODE FUNCTION */
-function showCode() {
+/*SHOW CODE FUNCTION this is what you see when you click on the title from the mainView*/
+function showCode(snippetIndex) {
   document.getElementById("mainView").style.display = "none";
   // Display the code view with the selected snippet
   const codeView = document.getElementById("codeView");
-  codeView.innerHTML =
-    chrome.extension.getBackgroundPage().snippets[snippetIndex];
-  // Show the back button
-  document.getElementById("backButton").style.display = "block";
+  const backButton = document.getElementById("backButton");
+
+  // Get snippets from storage
+  chrome.storage.sync.get({ snippets: [] }, function (data) {
+    const snippets = data.snippets;
+
+    // Check if the snippetIndex is valid
+    if (snippetIndex >= 0 && snippetIndex < snippets.length) {
+      const snippet = snippets[snippetIndex];
+      codeView.innerHTML = `Title: ${snippet.title}<br>${snippet.code}`;
+
+      // Show the back button
+      backButton.style.display = "block";
+    } else {
+      codeView.innerHTML = "Invalid snippet index.";
+    }
+  });
 }
+
 function showMainView() {
   // Show the main view
   document.getElementById("mainView").style.display = "block";
