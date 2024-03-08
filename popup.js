@@ -103,7 +103,9 @@ function showCode(snippetIndex) {
   document.getElementById("mainView").style.display = "none";
   // Display the code view with the selected snippet
   const codeView = document.getElementById("codeView");
+  const codeTextBox = document.querySelector(".code-text-box");
   const backButton = document.getElementById("backButton");
+  const codeTitle = document.getElementById("codeTitle");
 
   // Get snippets from storage
   chrome.storage.sync.get({ snippets: [] }, function (data) {
@@ -112,7 +114,12 @@ function showCode(snippetIndex) {
     // Check if the snippetIndex is valid
     if (snippetIndex >= 0 && snippetIndex < snippets.length) {
       const snippet = snippets[snippetIndex];
-      codeView.innerHTML = `Title: ${snippet.title}<br>${snippet.code}`;
+      // Update the content of codeTextBox
+      codeTextBox.textContent = `${snippet.code}`;
+      codeTitle.textContent = `${snippet.title}`;
+
+      // Show the codeView
+      codeView.style.display = "block";
 
       // Show the back button
       backButton.style.display = "block";
@@ -131,6 +138,7 @@ function showMainView() {
 
   // Hide the back button
   document.getElementById("backButton").style.display = "none";
+  document.querySelector(".code-text-box").style.display = "none";
 }
 
 function loadSnippets() {

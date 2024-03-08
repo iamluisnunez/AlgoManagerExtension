@@ -7,34 +7,41 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <div id="mainView">
-      <h3>Code Snippet Name:</h3>
-      <textarea
-        id="titleText"
-        placeholder="Enter your code snippet title"
-      ></textarea>
-      <h3>Add Code Snippet</h3>
-      <textarea
-        id="snippetText"
-        placeholder="Enter your code snippet"
-      ></textarea>
-      <button id="saveButton">Save</button>
-      <br />
-      <input
-        type="text"
-        id="snippetNumberToDelete"
-        placeholder="Enter snippet number"
-        pattern="[0-9]*"
-      />
-      <button id="deleteButton">Delete</button>
+    <div class="container">
+      <div id="mainView">
+        <h3>Code Snippet Name:</h3>
+        <textarea
+          id="titleText"
+          placeholder="Enter your code snippet title"
+        ></textarea>
+        <h3>Add Code Snippet</h3>
+        <textarea
+          id="snippetText"
+          placeholder="Enter your code snippet"
+        ></textarea>
+        <button id="saveButton">Save</button>
+        <br />
+        <input
+          type="text"
+          id="snippetNumberToDelete"
+          placeholder="Enter snippet number"
+          pattern="[0-9]*"
+        />
+        <button id="deleteButton">Delete</button>
 
-      <h3>Your Code Snippets</h3>
-      <ul id="snippetList"></ul>
+        <h3>Your Code Snippets</h3>
+        <ul id="snippetList"></ul>
+      </div>
+
+      <div id="codeView" style="display: none">
+        <h1 id="codeTitle"></h1>
+        <pre class="code-text-box code-container"></pre>
+      </div>
+
+      <button id="backButton" class="back-button" style="display: none">
+        Back
+      </button>
     </div>
-
-    <div id="codeView"></div>
-    <button id="backButton">Back</button>
-
     <script src="popup.js"></script>
   </body>
 </html>
