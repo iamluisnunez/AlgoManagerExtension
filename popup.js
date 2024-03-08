@@ -100,7 +100,10 @@ function deleteSnippet() {
 
 /*SHOW CODE FUNCTION this is what you see when you click on the title from the mainView*/
 function showCode(snippetIndex) {
+  console.log("clicked on code");
   document.getElementById("mainView").style.display = "none";
+  document.getElementById("codeView").style.display = "block";
+  document.querySelector(".code-text-box").style.display = "block";
   // Display the code view with the selected snippet
   const codeView = document.getElementById("codeView");
   const codeTextBox = document.querySelector(".code-text-box");
@@ -134,7 +137,7 @@ function showMainView() {
   document.getElementById("mainView").style.display = "block";
 
   // Hide the code view
-  document.getElementById("codeView").innerHTML = "";
+  document.getElementById("codeView").style.display = "none";
 
   // Hide the back button
   document.getElementById("backButton").style.display = "none";
@@ -146,7 +149,6 @@ function loadSnippets() {
   chrome.storage.sync.get({ snippets: [] }, function (data) {
     const snippetList = document.getElementById("snippetList");
     snippetList.innerHTML = "";
-    console.log(data);
     data.snippets.forEach(function (snippet, index) {
       const listItem = document.createElement("li");
       console.log(snippet);
