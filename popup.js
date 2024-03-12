@@ -134,7 +134,10 @@ function showCode(snippetIndex) {
 
 function showMainView() {
   // Show the main view
-  document.getElementById("mainView").style.display = "block";
+  //document.getElementById("mainView").style.display = "block";
+  document.getElementById("mainView").style.display = "flex";
+  document.getElementById("mainView").style.flexDirection = "center";
+  document.getElementById("mainView").style.alignItems = "center";
 
   // Hide the code view
   document.getElementById("codeView").style.display = "none";
