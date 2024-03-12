@@ -5,6 +5,9 @@
   "description": "Manage and store your code snippets.",
   "permissions": ["storage"],
   "action": {
+    "default_icon": {
+      "16": "codeImage.png"
+    },
     "default_popup": "popup.html"
   }
 }
